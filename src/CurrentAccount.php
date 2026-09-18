@@ -15,4 +15,10 @@ class CurrentAccount extends Account
     {
         return "Current Account";
     }
+
+    public function calculateInterest(): float
+    {
+        // Current accounts usually do not earn interest
+        return 0.0;
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-class Account
+abstract class Account
 {
     public string $accountNumber;
     private float $balance;
@@ -47,4 +47,7 @@ class Account
         echo "Balance: Rs. " . $this->balance . "\n";
         echo "--------------------------\n";
     }
+
+    // Abstract method: All child classes MUST implement this
+    abstract public function calculateInterest(): float;
 }

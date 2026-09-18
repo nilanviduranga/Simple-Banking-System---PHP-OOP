@@ -6,19 +6,20 @@ require_once 'src/CurrentAccount.php';
 // Create different types of accounts
 $savings = new SavingsAccount("SAV-001", 50000);
 $current = new CurrentAccount("CUR-001", 15000);
-// We can even create a generic account to see its type
-$generic = new Account("GEN-001", 5000);
 
-// Put them all in an array. 
-// They are all of type 'Account' (IS-A relationship)
-$accounts = [$savings, $current, $generic];
+// We CANNOT create a generic account anymore!
+// $generic = new Account("GEN-001", 5000); // This will cause an error
 
-echo "--- Polymorphism Demonstration ---\n";
+$accounts = [$savings, $current];
+
+echo "--- Abstract Class Demonstration ---\n";
 
 foreach ($accounts as $account) {
-    // We call the EXACT SAME method name on different objects
-    echo "Account Number: " . $account->accountNumber . " is a " . $account->getAccountType() . "\n";
+    echo "Account Number: " . $account->accountNumber . " (" . $account->getAccountType() . ")\n";
+    echo "Calculated Interest: Rs. " . $account->calculateInterest() . "\n";
+    echo "--------------------------\n";
 }
+
 
 //foreach ($accounts as $account) {
 //    $account->showDetails();

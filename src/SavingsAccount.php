@@ -8,10 +8,14 @@ class SavingsAccount extends Account
 
     public function addInterest(): void
     {
-        // We use getBalance() and deposit() because $balance is private in Account
-        $interestAmount = $this->getBalance() * ($this->interestRate / 100);
+        $interestAmount = $this->calculateInterest();
         echo "Calculating interest...\n";
         $this->deposit($interestAmount);
+    }
+
+    public function calculateInterest(): float
+    {
+        return $this->getBalance() * ($this->interestRate / 100);
     }
 
     public function getAccountType(): string
