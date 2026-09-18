@@ -1,25 +1,20 @@
 <?php
 
-require_once 'src/BankTransfer.php';
-require_once 'src/InternalTransfer.php';
-require_once 'src/TransactionMethod.php';
+require_once 'src/SavingsAccount.php';
 
-// A simple function that expects ANY object as long as it implements TransactionMethod
-function processTransaction(TransactionMethod $method)
-{
-    // We don't care IF it's a BankTransfer or InternalTransfer
-    // We just know it MUST have an execute() method because of the Interface!
-    $method->execute(5000);
-    echo "--------------------------\n";
-}
+// Create a savings account
+$savings = new SavingsAccount("SAV-999", 50000);
 
-echo "--- Interface + Polymorphism Demonstration ---\n\n";
+echo "--- Doing some transactions ---\n";
+$savings->deposit(15000);
+$savings->withdraw(5000);
+$savings->transfer(10000);
+$savings->addInterest(); // Adds interest using deposit() internally
 
-// Injecting a BankTransfer object
-processTransaction(new BankTransfer());
+echo "\n";
+// Show the transaction history!
+$savings->showTransactions();
 
-// Injecting an InternalTransfer object
-processTransaction(new InternalTransfer());
 
 
 
