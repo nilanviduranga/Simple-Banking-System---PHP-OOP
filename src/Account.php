@@ -6,6 +6,13 @@ class Account
     public string $ownerName;
     public float $balance;
 
+    public function __construct(string $accountNumber, string $ownerName, float $balance)
+    {
+        $this->accountNumber = $accountNumber;
+        $this->ownerName = $ownerName;
+        $this->balance = $balance;
+    }
+
     public function showDetails(): void
     {
         echo "Account Number: " . $this->accountNumber . "\n";

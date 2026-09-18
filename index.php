@@ -2,13 +2,9 @@
 
 require_once 'src/Account.php';
 
-// Create a new Account Object
-$account = new Account();
-
-// Set properties
-$account->accountNumber = "ACC001";
-$account->ownerName = "Nilan";
-$account->balance = 50000;
+// Create a new Account Object using the Constructor
+$account = new Account("ACC001", "Nilan", 50000);
 
 // Call the method
 $account->showDetails();
+
