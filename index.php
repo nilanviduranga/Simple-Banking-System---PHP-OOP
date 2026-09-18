@@ -1,23 +1,26 @@
 <?php
 
-require_once 'src/SavingsAccount.php';
-require_once 'src/CurrentAccount.php';
+require_once 'src/BankTransfer.php';
+require_once 'src/InternalTransfer.php';
+require_once 'src/TransactionMethod.php';
 
-// Create different types of accounts
-$savings = new SavingsAccount("SAV-001", 50000);
-$current = new CurrentAccount("CUR-001", 15000);
+// A simple function that expects ANY object as long as it implements TransactionMethod
+function processTransaction(TransactionMethod $method)
+{
+    // We don't care IF it's a BankTransfer or InternalTransfer
+    // We just know it MUST have an execute() method because of the Interface!
+    $method->execute(5000);
+    echo "--------------------------\n";
+}
 
-echo "--- Interface Demonstration ---\n";
+echo "--- Interface + Polymorphism Demonstration ---\n\n";
 
-// Both Savings and Current accounts are "Transactionable"
-// So they must have the transfer() method implemented
-echo "Attempting to transfer Rs. 10000 from Savings...\n";
-$isSuccess = $savings->transfer(10000);
+// Injecting a BankTransfer object
+processTransaction(new BankTransfer());
 
-echo "\nAttempting to transfer Rs. 20000 from Current...\n";
-$isSuccess2 = $current->transfer(20000); // Should fail due to insufficient balance
+// Injecting an InternalTransfer object
+processTransaction(new InternalTransfer());
 
-echo "--------------------------\n";
 
 
 
