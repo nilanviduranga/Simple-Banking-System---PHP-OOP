@@ -36,6 +36,11 @@ class Account
         return $this->balance;
     }
 
+    public function getAccountType(): string
+    {
+        return "Account";
+    }
+
     public function showDetails(): void
     {
         echo "Account Number: " . $this->accountNumber . "\n";

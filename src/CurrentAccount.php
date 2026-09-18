@@ -10,4 +10,9 @@ class CurrentAccount extends Account
     {
         echo "Overdraft Limit is: Rs. " . $this->overdraftLimit . "\n";
     }
+
+    public function getAccountType(): string
+    {
+        return "Current Account";
+    }
 }

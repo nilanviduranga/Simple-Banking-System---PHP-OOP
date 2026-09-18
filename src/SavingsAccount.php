@@ -13,4 +13,18 @@ class SavingsAccount extends Account
         echo "Calculating interest...\n";
         $this->deposit($interestAmount);
     }
+
+    public function getAccountType(): string
+    {
+        return "Savings Account";
+    }
+
+    //public function showDetails(): void
+    //{
+    //    echo "Account Number: " . $this->accountNumber . "\n";
+    //    echo "Balance: Rs. " . $this->getBalance() . "\n";
+    //    echo "Interest Rate: 15%\n";
+    //    echo "--------------------------\n";
+    //}
+
 }
