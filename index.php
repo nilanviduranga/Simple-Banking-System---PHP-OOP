@@ -1,19 +1,22 @@
 <?php
 
+require_once 'src/Bank.php';
+require_once 'src/Customer.php';
 require_once 'src/SavingsAccount.php';
 
-// Create a savings account
-$savings = new SavingsAccount("SAV-999", 50000);
+// Setup Bank and Customer
+$bank = new Bank();
+$savings = new SavingsAccount("SAV-111", 5000);
+$customer = new Customer(1, "Nilan", $savings);
+$bank->addCustomer($customer);
 
-echo "--- Doing some transactions ---\n";
-$savings->deposit(15000);
-$savings->withdraw(5000);
-$savings->transfer(10000);
-$savings->addInterest(); // Adds interest using deposit() internally
+echo "Initial Balance: Rs. " . $savings->getBalance() . "\n";
 
-echo "\n";
-// Show the transaction history!
-$savings->showTransactions();
+// Charge monthly fees using the Bank's new method
+$bank->chargeMonthlyFees();
+
+echo "Final Balance: Rs. " . $savings->getBalance() . "\n";
+
 
 
 
