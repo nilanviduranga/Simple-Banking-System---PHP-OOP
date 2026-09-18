@@ -1,18 +1,22 @@
 <?php
 
 require_once 'src/Account.php';
+require_once 'src/Customer.php';
 
 // Create a new Account Object
-$account = new Account("ACC001", "Nilan", 50000);
+$account = new Account("ACC001", 50000);
 
-$account->showDetails();
+// Create a Customer Object and assign the Account to it
+$customer = new Customer(1, "Nilan", $account);
 
-// Perform transactions using methods
-$account->deposit(5000);
-$account->withdraw(2000);
+// Show customer details (which includes account details)
+$customer->showCustomerDetails();
 
-// Try to get balance
-echo "Current Balance is: Rs. " . $account->getBalance() . "\n";
+// Perform a transaction through the customer's account
+echo "Depositing Rs. 5000...\n";
+$customer->account->deposit(5000);
+
+echo "Current Balance is: Rs. " . $customer->account->getBalance() . "\n";
 echo "--------------------------\n";
 
 
