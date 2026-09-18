@@ -1,6 +1,8 @@
 <?php
 
-abstract class Account
+require_once 'Transactionable.php';
+
+abstract class Account implements Transactionable
 {
     public string $accountNumber;
     private float $balance;
@@ -29,6 +31,17 @@ abstract class Account
         } else {
             echo "Invalid withdraw amount or insufficient balance.\n";
         }
+    }
+
+    public function transfer(float $amount): bool
+    {
+        if ($amount > 0 && $amount <= $this->balance) {
+            $this->balance -= $amount;
+            echo "Successfully transferred Rs. " . $amount . " to external account.\n";
+            return true;
+        }
+        echo "Transfer failed! Insufficient balance.\n";
+        return false;
     }
 
     public function getBalance(): float

@@ -7,18 +7,18 @@ require_once 'src/CurrentAccount.php';
 $savings = new SavingsAccount("SAV-001", 50000);
 $current = new CurrentAccount("CUR-001", 15000);
 
-// We CANNOT create a generic account anymore!
-// $generic = new Account("GEN-001", 5000); // This will cause an error
+echo "--- Interface Demonstration ---\n";
 
-$accounts = [$savings, $current];
+// Both Savings and Current accounts are "Transactionable"
+// So they must have the transfer() method implemented
+echo "Attempting to transfer Rs. 10000 from Savings...\n";
+$isSuccess = $savings->transfer(10000);
 
-echo "--- Abstract Class Demonstration ---\n";
+echo "\nAttempting to transfer Rs. 20000 from Current...\n";
+$isSuccess2 = $current->transfer(20000); // Should fail due to insufficient balance
 
-foreach ($accounts as $account) {
-    echo "Account Number: " . $account->accountNumber . " (" . $account->getAccountType() . ")\n";
-    echo "Calculated Interest: Rs. " . $account->calculateInterest() . "\n";
-    echo "--------------------------\n";
-}
+echo "--------------------------\n";
+
 
 
 //foreach ($accounts as $account) {
